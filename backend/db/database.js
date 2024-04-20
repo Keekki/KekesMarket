@@ -28,7 +28,7 @@ db.serialize(() => {
       if (err) {
         console.error(err.message);
       } else {
-        console.log("Users table created successfully.");
+        console.log("'Users' table created successfully.");
       }
     }
   );
@@ -43,6 +43,24 @@ db.serialize(() => {
         return console.error(err.message);
       }
       console.log(`Row(s) updated: ${this.changes}`);
+    }
+  );
+
+  db.run(
+    `CREATE TABLE IF NOT EXISTS Listings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL,
+    price REAL NOT NULL,
+    ownerId INTEGER NOT NULL,
+    additionalInfo TEXT
+);`,
+    (err) => {
+      if (err) {
+        console.error(err.message);
+      } else {
+        console.log("'Listings' table created successfully.");
+      }
     }
   );
 });

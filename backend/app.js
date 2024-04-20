@@ -9,6 +9,7 @@ const app = express();
 app.use(cors());
 
 const userRoutes = require("./routes/userRoutes");
+const listingRoutes = require("./routes/listingRoutes");
 
 app.use(bodyParser.json());
 
@@ -24,6 +25,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/api", userRoutes);
+app.use("/api", listingRoutes);
 
 app.get("/healthCheck", (req, res) => {
   res.status(200).send("all good");
