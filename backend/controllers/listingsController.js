@@ -1,7 +1,40 @@
-const db = require("../db/database");
+exports.getAllListings = (req, res) => {
+  const sql = "SELECT * FROM Listings";
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      return res.status(400).json({ error: err.message });
+    }
+    res.json(rows);
+  });
+};
+
+exports.getListingById = (req, res) => {
+  const sql = "SELECT * FROM Listings WHERE id = ?";
+  db.get(sql, [req.params.id], (err, row) => {
+    if (err) {
+      return res.status(400).json({ error: err.message });
+    }
+    if (row) {
+      res.json(row);
+    } else {
+      res.status(404).json({ message: "Listing not found" });
+    }
+  });
+};
+
+exports.getListingsByUserId = (req, res) => {
+  const sql = "SELECT * FROM Listings WHERE ownerId = ?";
+  db.all(sql, [req.userData.userId], (err, rows) => {
+    if (err) {
+      return res.status(400).json({ error: err.message });
+    }
+    res.json(rows);
+  });
+};
 
 exports.createListing = (req, res) => {
-  const { title, description, price, ownerId, additionalInfo } = req.body;
+  const { title, description, price, additionalInfo } = req.body;
+  const ownerId = req.userData.userId;
   const sql = `INSERT INTO Listings (title, description, price, ownerId, additionalInfo) VALUES (?, ?, ?, ?, ?)`;
   db.run(
     sql,
@@ -15,37 +48,49 @@ exports.createListing = (req, res) => {
   );
 };
 
-exports.getAllListings = (req, res) => {
-  const sql = "SELECT * FROM Listings";
-  db.all(sql, [], (err, rows) => {
+exports.updateListing = (req, res) => {
+  const { title, description, price, additionalInfo } = req.body;
+  const sql = `SELECT ownerId FROM Listings WHERE id = ?`;
+  db.get(sql, [req.params.id], (err, row) => {
     if (err) {
       return res.status(400).json({ error: err.message });
     }
-    res.json(rows);
+    if (row.ownerId !== req.userData.userId) {
+      return res
+        .status(403)
+        .json({ message: "Unauthorized to modify this listing" });
+    }
+    const updateSql = `UPDATE Listings SET title = ?, description = ?, price = ?, additionalInfo = ? WHERE id = ?`;
+    db.run(
+      updateSql,
+      [title, description, price, additionalInfo, req.params.id],
+      function (err) {
+        if (err) {
+          return res.status(400).json({ error: err.message });
+        }
+        res.json({ message: "Listing Updated", changes: this.changes });
+      }
+    );
   });
 };
 
-exports.updateListing = (req, res) => {
-  const { title, description, price, additionalInfo } = req.body;
-  const sql = `UPDATE Listings SET title = ?, description = ?, price = ?, additionalInfo = ? WHERE id = ?`;
-  db.run(
-    sql,
-    [title, description, price, additionalInfo, req.params.id],
-    function (err) {
-      if (err) {
-        return res.status(400).json({ error: err.message });
-      }
-      res.json({ message: "Listing Updated", changes: this.changes });
-    }
-  );
-};
-
 exports.deleteListing = (req, res) => {
-  const sql = "DELETE FROM Listings WHERE id = ?";
-  db.run(sql, req.params.id, function (err) {
+  const sql = `SELECT ownerId FROM Listings WHERE id = ?`;
+  db.get(sql, [req.params.id], (err, row) => {
     if (err) {
       return res.status(400).json({ error: err.message });
     }
-    res.json({ message: "Listing Deleted", changes: this.changes });
+    if (row.ownerId !== req.userData.userId) {
+      return res
+        .status(403)
+        .json({ message: "Unauthorized to delete this listing" });
+    }
+    const deleteSql = "DELETE FROM Listings WHERE id = ?";
+    db.run(deleteSql, req.params.id, function (err) {
+      if (err) {
+        return res.status(400).json({ error: err.message });
+      }
+      res.json({ message: "Listing Deleted", changes: this.changes });
+    });
   });
 };
