@@ -13,5 +13,6 @@ router.get(
 );
 router.put("/listings/:id", verifyToken, listingsController.updateListing);
 router.delete("/listings/:id", verifyToken, listingsController.deleteListing);
+router.get("/listings/search", listingsController.searchListings);
 
 module.exports = router;

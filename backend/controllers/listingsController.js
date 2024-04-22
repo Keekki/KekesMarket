@@ -94,3 +94,40 @@ exports.deleteListing = (req, res) => {
     });
   });
 };
+
+exports.searchListings = (req, res) => {
+  let { keyword, category, priceMin, priceMax } = req.query;
+  let sql = `SELECT * FROM Listings WHERE 1 = 1`;
+  const params = [];
+
+  if (keyword) {
+    sql += ` AND (title LIKE ? OR description LIKE ?)`;
+    keyword = `%${keyword}%`;
+    params.push(keyword, keyword);
+  }
+
+  if (category) {
+    sql += ` AND category = ?`;
+    params.push(category);
+  }
+
+  if (priceMin) {
+    sql += ` AND price >= ?`;
+    params.push(priceMin);
+  }
+
+  if (priceMax) {
+    sql += ` AND price <= ?`;
+    params.push(priceMax);
+  }
+
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      return res.status(400).json({ error: err.message });
+    }
+    res.json({
+      message: "Success",
+      data: rows,
+    });
+  });
+};

@@ -1,4 +1,5 @@
 const express = require("express");
+const passport = require("passport");
 const verifyToken = require("../middleware/verifyToken.js");
 const {
   signUpUser,
@@ -22,8 +23,9 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
   (req, res) => {
+    console.log("Google callback route hit. User:", req.user);
     // Successful authentication, redirect home.
-    res.redirect("/");
+    res.redirect("http://localhost:8000/login/oauth2/code/google");
   }
 );
 

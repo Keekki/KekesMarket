@@ -1,11 +1,11 @@
 const sqlite3 = require("sqlite3").verbose();
 const fs = require("fs");
 
-const db = new sqlite3.Database("./db/react_diner.db", (err) => {
+const db = new sqlite3.Database("./db/marketplace.db", (err) => {
   if (err) {
     console.error(err.message);
   }
-  console.log("Connected to the react_diner database.");
+  console.log("Connected to the marketplace database.");
 });
 
 db.serialize(() => {
@@ -53,7 +53,8 @@ db.serialize(() => {
     description TEXT NOT NULL,
     price REAL NOT NULL,
     ownerId INTEGER NOT NULL,
-    additionalInfo TEXT
+    additionalInfo TEXT,
+    category TEXT
 );`,
     (err) => {
       if (err) {
@@ -63,6 +64,53 @@ db.serialize(() => {
       }
     }
   );
+});
+
+// Adding a few example listings
+const categories = [
+  "Freetime",
+  "Kitchen",
+  "Sports",
+  "IT",
+  "Gaming",
+  "Pets",
+  "Home",
+  "Clothing",
+  "Hiking",
+];
+const listings = [
+  {
+    title: "Tennis Racket",
+    description: "Professional grade racket.",
+    price: 150,
+    ownerId: 1,
+    category: "Sports",
+  },
+  {
+    title: "Gaming Laptop",
+    description: "High performance for gaming and software development.",
+    price: 1200,
+    ownerId: 2,
+    category: "IT",
+  },
+  {
+    title: "Large crate",
+    description: "A large crate for a dog.",
+    price: 70,
+    ownerId: 3,
+    category: "Pets",
+  },
+];
+
+listings.forEach((listing) => {
+  const { title, description, price, ownerId, category } = listing;
+  const sql = `INSERT INTO Listings (title, description, price, ownerId, category) VALUES (?, ?, ?, ?, ?)`;
+  db.run(sql, [title, description, price, ownerId, category], function (err) {
+    if (err) {
+      return console.error(err.message);
+    }
+    console.log(`Listing with ID ${this.lastID} added successfully.`);
+  });
 });
 
 module.exports = db;

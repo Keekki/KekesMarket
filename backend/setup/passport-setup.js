@@ -1,6 +1,10 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const db = require("./db/database");
+const db = require("../db/database");
+const path = require("path");
+require("dotenv").config({
+  path: path.resolve(__dirname, "../.env"),
+});
 
 passport.use(
   new GoogleStrategy(
@@ -10,7 +14,7 @@ passport.use(
       callbackURL: "http://localhost:8000/login/oauth2/code/google",
     },
     async (accessToken, refreshToken, profile, done) => {
-      // Check if user already exists in our db
+      // Check if user already exists in the db
       const sql = "SELECT * FROM users WHERE googleId = ?";
       db.get(sql, [profile.id], (err, user) => {
         if (err) {
