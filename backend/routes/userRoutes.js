@@ -20,12 +20,15 @@ router.get(
 );
 
 router.get(
-  "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/login" }),
+  "/login/oauth2/callback",
+  (req, res, next) => {
+    console.log("Callback URL hit with query:", req.query);
+    next();
+  },
+  passport.authenticate("google", { failureRedirect: "/users/login" }),
   (req, res) => {
-    console.log("Google callback route hit. User:", req.user);
-    // Successful authentication, redirect home.
-    res.redirect("http://localhost:8000/login/oauth2/code/google");
+    console.log("Authentication successful, user:", req.user);
+    res.redirect("/");
   }
 );
 

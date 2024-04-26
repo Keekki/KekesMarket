@@ -2,6 +2,7 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const db = require("../db/database");
 const path = require("path");
+const { profile } = require("console");
 require("dotenv").config({
   path: path.resolve(__dirname, "../.env"),
 });
@@ -11,9 +12,12 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:8000/login/oauth2/code/google",
+      callbackURL: "http://localhost:8000/login/oauth2/callback",
     },
+    // console.log("clientID", process.env.GOOGLE_CLIENT_ID),
+    // console.log("clientSecret", process.env.GOOGLE_CLIENT_SECRET),
     async (accessToken, refreshToken, profile, done) => {
+      console.log("Profile: ", profile);
       // Check if user already exists in the db
       const sql = "SELECT * FROM users WHERE googleId = ?";
       db.get(sql, [profile.id], (err, user) => {
@@ -29,10 +33,16 @@ passport.use(
             email: profile.emails[0].value,
             googleId: profile.id,
           };
-          const insertSql = `INSERT INTO users (id, name, email, googleId) VALUES (?, ?, ?, ?)`;
+          const insertSql = `INSERT INTO users (id, name, email, googleId, password_hash) VALUES (?, ?, ?, ?, ?)`;
           db.run(
             insertSql,
-            [newUser.id, newUser.name, newUser.email, newUser.googleId],
+            [
+              newUser.id,
+              newUser.name,
+              newUser.email,
+              newUser.googleId,
+              newUser.password_hash || null,
+            ],
             (err) => {
               if (err) {
                 return done(err);
@@ -42,21 +52,21 @@ passport.use(
           );
         } else {
           // If user exists, return the user
-          return done(null, user);
+          return done(null, profile);
         }
       });
     }
   )
 );
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
+passport.serializeUser((profile, done) => {
+  done(null, profile.id);
 });
 
 passport.deserializeUser((id, done) => {
   const sql = "SELECT * FROM users WHERE id = ?";
-  db.get(sql, [id], (err, user) => {
-    done(err, user);
+  db.get(sql, [id], (err, profile) => {
+    done(err, profile);
   });
 });
 
