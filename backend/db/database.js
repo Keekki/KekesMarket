@@ -104,12 +104,29 @@ const listings = [
 
 listings.forEach((listing) => {
   const { title, description, price, ownerId, category } = listing;
-  const sql = `INSERT INTO Listings (title, description, price, ownerId, category) VALUES (?, ?, ?, ?, ?)`;
-  db.run(sql, [title, description, price, ownerId, category], function (err) {
-    if (err) {
-      return console.error(err.message);
+
+  // SQL to check if the listing already exists
+  const checkSql = `SELECT id FROM Listings WHERE title = ? AND description = ? AND ownerId = ?`;
+  db.get(checkSql, [title, description, ownerId], (checkErr, row) => {
+    if (checkErr) {
+      return console.error(checkErr.message);
     }
-    console.log(`Listing with ID ${this.lastID} added successfully.`);
+
+    if (!row) {
+      const insertSql = `INSERT INTO Listings (title, description, price, ownerId, category) VALUES (?, ?, ?, ?, ?)`;
+      db.run(
+        insertSql,
+        [title, description, price, ownerId, category],
+        function (insertErr) {
+          if (insertErr) {
+            return console.error(insertErr.message);
+          }
+          console.log(`Listing with ID ${this.lastID} added successfully.`);
+        }
+      );
+    } else {
+      console.log(`Listing already exists with ID ${row.id}`);
+    }
   });
 });
 
