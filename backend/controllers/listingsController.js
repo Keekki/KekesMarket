@@ -1,3 +1,5 @@
+const db = require("../db/database");
+
 exports.getAllListings = (req, res) => {
   const sql = "SELECT * FROM Listings";
   db.all(sql, [], (err, rows) => {
@@ -33,16 +35,21 @@ exports.getListingsByUserId = (req, res) => {
 };
 
 exports.createListing = (req, res) => {
-  const { title, description, price, additionalInfo } = req.body;
+  const { title, description, price, category } = req.body;
+  const additionalInfo = req.body.additionalInfo || ""; // Handle optional additionalInfo
   const ownerId = req.userData.userId;
-  const sql = `INSERT INTO Listings (title, description, price, ownerId, additionalInfo) VALUES (?, ?, ?, ?, ?)`;
+
+  const sql = `INSERT INTO Listings (title, description, price, ownerId, additionalInfo, category) VALUES (?, ?, ?, ?, ?, ?)`;
+
   db.run(
     sql,
-    [title, description, price, ownerId, additionalInfo],
+    [title, description, price, ownerId, additionalInfo, category],
     function (err) {
       if (err) {
-        return res.status(400).json({ error: err.message });
+        console.error("Error creating Listing:", err);
+        return res.status(500).json({ error: err.message });
       }
+      console.log("Created listing ID: ", this.lastID);
       res.status(201).json({ id: this.lastID });
     }
   );

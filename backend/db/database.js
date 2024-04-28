@@ -1,12 +1,15 @@
 const sqlite3 = require("sqlite3").verbose();
-const fs = require("fs");
 
-const db = new sqlite3.Database("./db/marketplace.db", (err) => {
-  if (err) {
-    console.error(err.message);
+const db = new sqlite3.Database(
+  "./db/marketplace.db",
+  sqlite3.OPEN_READWRITE,
+  (err) => {
+    if (err) {
+      console.error("Error opening database", err.message);
+    }
+    console.log("Connected to the marketplace database.");
   }
-  console.log("Connected to the marketplace database.");
-});
+);
 
 db.serialize(() => {
   db.run(
@@ -33,7 +36,7 @@ db.serialize(() => {
     }
   );
 
-  const adminEmail = "matias.frimodig@tuni.fi";
+  const adminEmail = "matias.frimodig@tuni.fi" || "frimodigmatias@gmail.com";
 
   db.run(
     `UPDATE users SET admin = 1 WHERE email = ?`,
@@ -52,7 +55,7 @@ db.serialize(() => {
     title TEXT NOT NULL,
     description TEXT NOT NULL,
     price REAL NOT NULL,
-    ownerId INTEGER NOT NULL,
+    ownerId VARCHAR(36) NOT NULL,
     additionalInfo TEXT,
     category TEXT
 );`,
@@ -98,12 +101,14 @@ const listings = [
     description: "A large crate for a dog.",
     price: 70,
     ownerId: 3,
+    additionalInfo: "Only pickup",
     category: "Pets",
   },
 ];
 
 listings.forEach((listing) => {
-  const { title, description, price, ownerId, category } = listing;
+  const { title, description, price, ownerId, additionalInfo, category } =
+    listing;
 
   // SQL to check if the listing already exists
   const checkSql = `SELECT id FROM Listings WHERE title = ? AND description = ? AND ownerId = ?`;
@@ -113,10 +118,10 @@ listings.forEach((listing) => {
     }
 
     if (!row) {
-      const insertSql = `INSERT INTO Listings (title, description, price, ownerId, category) VALUES (?, ?, ?, ?, ?)`;
+      const insertSql = `INSERT INTO Listings (title, description, price, ownerId, additionalInfo, category) VALUES (?, ?, ?, ?, ?, ?)`;
       db.run(
         insertSql,
-        [title, description, price, ownerId, category],
+        [title, description, price, ownerId, additionalInfo, category],
         function (insertErr) {
           if (insertErr) {
             return console.error(insertErr.message);
