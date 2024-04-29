@@ -1,0 +1,169 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  color: #fff;
+  z-index: 1;
+}
+
+.header.homepage {
+  background-color: transparent;
+}
+
+.header.other {
+  background-color: black;
+}
+
+.login-icon {
+  margin-left: 10px;
+}
+
+.login-link {
+  color: orange !important;
+  font-size: 1.2rem !important;
+  margin-top: 10px !important;
+}
+
+.login-link:hover {
+  color: white !important;
+}
+
+.logo {
+  font-size: 3rem;
+  color: orange;
+  font-family: "Brush Script MT";
+  margin-left: 140px;
+  text-decoration: none; /* Removes the underline */
+}
+
+.logo:hover {
+  color: orange; /* Keeps the color the same on hover */
+}
+
+.logo:visited {
+  color: orange; /* Keeps the color the same after the link has been visited */
+}
+
+.logo-link {
+  text-decoration: none; /* Removes the underline */
+  color: inherit;
+}
+
+.logout-button {
+  background-color: transparent;
+  border: none;
+  color: red; /* Set the text color */
+  cursor: pointer;
+  padding: 0;
+  font-size: 1rem;
+  font-family: Garamond;
+  margin-top: 15px;
+  display: inline-flex; /* Align items horizontally */
+  align-items: center; /* Center items vertically */
+  transition: color 0.3s ease-in; /* Apply transition to color */
+}
+
+.logout-button:hover {
+  color: darkred; /* Change text color on hover */
+}
+
+.logout-icon {
+  margin-left: 5px; /* Add some space between text and icon */
+  transition: color 0.3s ease-in; /* Apply transition to the icon */
+}
+
+.logout-button:hover .logout-icon {
+  color: darkred; /* Change icon color on hover */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 80px;
+  margin-right: 50px;
+  font-family: Garamond;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.8rem;
+}
+
+.nav-links a:hover {
+  color: orange;
+  transition: ease-in 0.2s;
+}
+
+.nav-links li.login-li {
+  margin-top: 8px;
+}
+
+.user-menu {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  color: orange !important;
+  font-size: 1.2rem !important;
+  margin-top: 10px !important;
+  position: relative;
+  top: -10px;
+  cursor: pointer;
+  font-family: Garamond;
+}
+
+.user-menu:hover {
+  color: white !important;
+  transition: 0.3s ease-in;
+}
+
+.user-menu a {
+  font-size: 1.1rem !important;
+  color: white !important;
+  cursor: default !important;
+}
+
+.user-menu-popup {
+  position: absolute;
+  cursor: default;
+  top: 100%; /* Position it just below the user menu */
+  left: 0;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  padding: 10px;
+  z-index: 1000; /* Ensure it's above other content */
+  opacity: 0; /* Start with 0 opacity */
+  visibility: hidden; /* Hide by default */
+  box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: opacity 0.3s ease-in, visibility 0.3s ease-in; /* Apply transition to opacity and visibility */
+}
+
+.user-menu:hover .user-menu-popup {
+  opacity: 1; /* Fully visible on hover */
+  visibility: visible; /* Make it visible on hover */
+}
+
+.user-menu-popup .admin-button {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  cursor: pointer !important;
+  height: 40px;
+  width: auto;
+  font-family: Garamond;
+  font-size: 1.1rem;
+  margin-top: 10px;
+  display: inline-block;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.user-menu-popup .admin-button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: ease-in 0.2s;
+}

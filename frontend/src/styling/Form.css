@@ -1,0 +1,29 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: black;
+  color: white;
+  margin-top: -50px;
+}
+
+.form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form h2 {
+  font-family: Garamond;
+  color: orange;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form .MuiTextField-root {
+  width: 300px;
+  color: white;
+}
