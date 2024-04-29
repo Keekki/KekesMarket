@@ -11,38 +11,39 @@
   background-color: transparent;
 }
 
-.header.other {
-  background-color: black;
-}
-
 .login-icon {
   margin-left: 10px;
 }
 
 .login-link {
-  color: orange !important;
-  font-size: 1.2rem !important;
-  margin-top: 10px !important;
+  color: rgb(0, 0, 0, 0.9) !important;
+  font-size: 1rem !important;
+  margin-bottom: 10px !important;
 }
 
 .login-link:hover {
-  color: white !important;
+  color: rgba(0, 0, 0, 0.5) !important;
 }
 
 .logo {
-  font-size: 3rem;
-  color: orange;
-  font-family: "Brush Script MT";
+  font-size: 1.8rem;
+  color: rgb(0, 0, 0, 0.9);
+  font-family: "Courier New", Courier, monospace;
   margin-left: 140px;
   text-decoration: none; /* Removes the underline */
 }
 
 .logo:hover {
-  color: orange; /* Keeps the color the same on hover */
+  color: rgb(0, 0, 0, 0.9); /* Keeps the color the same on hover */
 }
 
 .logo:visited {
-  color: orange; /* Keeps the color the same after the link has been visited */
+  color: rgb(
+    0,
+    0,
+    0,
+    0.9
+  ); /* Keeps the color the same after the link has been visited */
 }
 
 .logo-link {
@@ -57,7 +58,7 @@
   cursor: pointer;
   padding: 0;
   font-size: 1rem;
-  font-family: Garamond;
+  font-family: "Courier New", Courier, monospace;
   margin-top: 15px;
   display: inline-flex; /* Align items horizontally */
   align-items: center; /* Center items vertically */
@@ -82,22 +83,22 @@
   display: flex;
   gap: 80px;
   margin-right: 50px;
-  font-family: Garamond;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .nav-links a {
-  color: #fff;
+  color: rgb(0, 0, 0, 0.9);
   text-decoration: none;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
 }
 
 .nav-links a:hover {
-  color: orange;
+  color: rgb(0, 0, 0, 0.5);
   transition: ease-in 0.2s;
 }
 
 .nav-links li.login-li {
-  margin-top: 8px;
+  margin-top: 2px;
 }
 
 .user-menu {

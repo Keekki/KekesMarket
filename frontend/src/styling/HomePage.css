@@ -1,0 +1,62 @@
+.home-page {
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.hero-section {
+  position: relative;
+  height: 50vh;
+  background-size: cover;
+  background-position: center bottom;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-box {
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  padding: 20px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  animation: fadeIn 1s;
+}
+
+.static-text {
+  color: white;
+}
+
+.changing-text {
+  color: grey;
+  margin-left: 10px;
+  animation: changeText 2.5s infinite;
+}
+
+@keyframes changeText {
+  0% {
+    transform: translateY(100%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.featured-items {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.item {
+  width: 30%;
+  height: 200px;
+  background-color: white;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
