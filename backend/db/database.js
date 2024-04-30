@@ -57,6 +57,7 @@ db.serialize(() => {
     description TEXT NOT NULL,
     price REAL NOT NULL,
     ownerId VARCHAR(36) NOT NULL,
+    image TEXT,
     additionalInfo TEXT,
     category TEXT
 );`,

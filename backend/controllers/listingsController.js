@@ -37,13 +37,14 @@ exports.getListingsByUserId = (req, res) => {
 exports.createListing = (req, res) => {
   const { title, description, price, category } = req.body;
   const additionalInfo = req.body.additionalInfo || ""; // Handle optional additionalInfo
+  const image = req.body.image || ""; // Handle optional image
   const ownerId = req.userData.userId;
 
-  const sql = `INSERT INTO Listings (title, description, price, ownerId, additionalInfo, category) VALUES (?, ?, ?, ?, ?, ?)`;
+  const sql = `INSERT INTO Listings (title, description, price, ownerId, image, additionalInfo, category) VALUES (?, ?, ?, ?, ?, ?, ?)`;
 
   db.run(
     sql,
-    [title, description, price, ownerId, additionalInfo, category],
+    [title, description, price, ownerId, image, additionalInfo, category],
     function (err) {
       if (err) {
         console.error("Error creating Listing:", err);
@@ -56,7 +57,7 @@ exports.createListing = (req, res) => {
 };
 
 exports.updateListing = (req, res) => {
-  const { title, description, price, additionalInfo } = req.body;
+  const { title, description, price, image, additionalInfo } = req.body;
   const sql = `SELECT ownerId FROM Listings WHERE id = ?`;
   db.get(sql, [req.params.id], (err, row) => {
     if (err) {
@@ -67,10 +68,10 @@ exports.updateListing = (req, res) => {
         .status(403)
         .json({ message: "Unauthorized to modify this listing" });
     }
-    const updateSql = `UPDATE Listings SET title = ?, description = ?, price = ?, additionalInfo = ? WHERE id = ?`;
+    const updateSql = `UPDATE Listings SET title = ?, description = ?, price = ?, image = ?, additionalInfo = ? WHERE id = ?`;
     db.run(
       updateSql,
-      [title, description, price, additionalInfo, req.params.id],
+      [title, description, price, image, additionalInfo, req.params.id],
       function (err) {
         if (err) {
           return res.status(400).json({ error: err.message });
