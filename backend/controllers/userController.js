@@ -5,7 +5,8 @@ const db = require("../db/database.js");
 
 const signUpUser = async (req, res) => {
   // Validation
-  const { name, email, password, street, postalCode, city } = req.body;
+  const { name, email, password, phoneNumber, street, postalCode, city } =
+    req.body;
 
   // Check if name, email, and password are present
   if (!name || !email || !password) {
@@ -51,6 +52,7 @@ const signUpUser = async (req, res) => {
     name,
     email,
     password_hash: hashedPassword,
+    phoneNumber,
     street,
     postalCode,
     city,
@@ -59,12 +61,13 @@ const signUpUser = async (req, res) => {
   try {
     await new Promise((resolve, reject) => {
       db.run(
-        `INSERT INTO users (id, name, email, password_hash, street, postalCode, city) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        `INSERT INTO users (id, name, email, password_hash, phoneNumber, street, postalCode, city) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           newUser.id,
           newUser.name,
           newUser.email,
           newUser.password_hash,
+          newUser.phoneNumber,
           newUser.street,
           newUser.postalCode,
           newUser.city,
@@ -154,7 +157,7 @@ const getUserDetails = async (req, res) => {
   try {
     const results = await new Promise((resolve, reject) => {
       db.all(
-        "SELECT id, name, email, street, postalCode, city, admin FROM users WHERE id = ?",
+        "SELECT id, name, email, phoneNumber, street, postalCode, city, admin FROM users WHERE id = ?",
         [userId],
         (err, rows) => {
           if (err) {

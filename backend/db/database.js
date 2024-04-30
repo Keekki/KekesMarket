@@ -17,6 +17,7 @@ db.serialize(() => {
     id VARCHAR(36) NOT NULL,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(50) NOT NULL,
+    phoneNumber VARCHAR(15),
     password_hash VARCHAR(60),
     street VARCHAR(60),
     postalCode VARCHAR(10),
