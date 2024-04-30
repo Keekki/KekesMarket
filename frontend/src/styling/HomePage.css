@@ -2,9 +2,11 @@
   font-family: "Courier New", Courier, monospace;
   color: white;
   display: flex;
-  align-items: top;
-  justify-content: center;
-  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .hero-section {
@@ -62,12 +64,6 @@
   color: black;
   position: relative;
   margin-left: 12px;
-}
-
-.featured-items {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
 }
 
 .item {

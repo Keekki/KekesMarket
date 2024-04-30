@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ReactTyped } from "react-typed";
-import "../styling/HomePage.css";
+import FeaturedItems from "./FeaturedItems";
+import "../../styling/HomePage.css";
 
 const items = [
   "a bike",
@@ -14,15 +15,6 @@ const items = [
 ];
 
 const HomePage: React.FC = () => {
-  const [featuredItems, setFeaturedItems] = useState<any[]>([]);
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/listings`)
-      .then((response) => response.json())
-      .then((data) => setFeaturedItems(data))
-      .catch((error) => console.error("Error fetching featured items:", error));
-  }, []);
-
   return (
     <div className="home-container">
       <div className="hero-section">
@@ -46,13 +38,7 @@ const HomePage: React.FC = () => {
           <span className="static-text-footer">Feel free to explore!</span>
         </div>
       </div>
-      <div className="featured-items">
-        {featuredItems.map((item, index) => (
-          <div key={index} className="item">
-            {item.name}
-          </div>
-        ))}
-      </div>
+      <FeaturedItems />
     </div>
   );
 };
