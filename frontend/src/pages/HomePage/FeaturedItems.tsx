@@ -31,7 +31,11 @@ const FeaturedItems: React.FC = () => {
     <div className="featured-items-container">
       {featuredItems.map((item, index) => (
         <div key={index} className="featured-item">
-          <img src={item.image} alt={item.title} className="item-image" />
+          <img
+            src={`${import.meta.env.VITE_API_URL}${item.image}`}
+            alt={item.title}
+            className="item-image"
+          />
           <div className="item-info">
             <strong>Title:</strong> {item.title}
             <br />
