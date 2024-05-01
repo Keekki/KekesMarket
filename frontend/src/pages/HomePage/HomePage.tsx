@@ -38,6 +38,7 @@ const HomePage: React.FC = () => {
           <span className="static-text-footer">Feel free to explore!</span>
         </div>
       </div>
+      <span className="featured-text">Listings you might like</span>
       <FeaturedItems />
     </div>
   );

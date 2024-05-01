@@ -1,3 +1,11 @@
+.featured-text {
+  color: black;
+  font-size: 1.3rem;
+  width: 92%;
+  text-align: left;
+  margin-top: 20px;
+}
+
 .home-container {
   font-family: "Courier New", Courier, monospace;
   color: white;
