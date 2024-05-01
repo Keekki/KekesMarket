@@ -1,0 +1,242 @@
+[
+  {
+    "title": "Tennis Racket",
+    "description": "Professional grade racket.",
+    "price": 150,
+    "ownerId": "1",
+    "category": "Sports",
+    "image": "/images/tennisracket.png"
+  },
+  {
+    "title": "Gaming Laptop",
+    "description": "High performance for gaming and software development.",
+    "price": 1200,
+    "ownerId": "2",
+    "category": "IT",
+    "image": "/images/gaminglaptop.png"
+  },
+  {
+    "title": "Large Dog Crate",
+    "description": "A large crate for a dog.",
+    "price": 70,
+    "ownerId": "3",
+    "category": "Pets",
+    "image": "/images/dogcrate.png"
+  },
+  {
+    "title": "Sofa",
+    "description": "A clean used sofa",
+    "price": 50,
+    "ownerId": "4",
+    "category": "Home",
+    "image": "/images/sofa.png"
+  },
+  {
+    "title": "Mountain Bike",
+    "description": "Robust mountain bike, perfect for off-road trails.",
+    "price": 350,
+    "ownerId": "5",
+    "category": "Sports",
+    "image": "/images/mountainbike.png"
+  },
+  {
+    "title": "Espresso Machine",
+    "description": "High-quality espresso machine with multiple features.",
+    "price": 450,
+    "ownerId": "6",
+    "category": "Kitchen",
+    "image": "/images/espressomachine.png"
+  },
+  {
+    "title": "Office Chair",
+    "description": "Ergonomic office chair suitable for long working hours.",
+    "price": 200,
+    "ownerId": "7",
+    "category": "Home",
+    "image": "/images/officechair.png"
+  },
+  {
+    "title": "Graphic T-Shirt",
+    "description": "Stylish graphic t-shirt, 100% cotton.",
+    "price": 25,
+    "ownerId": "8",
+    "category": "Clothing",
+    "image": "/images/tshirt.png"
+  },
+  {
+    "title": "Hiking Backpack",
+    "description": "Durable hiking backpack with 30L capacity.",
+    "price": 120,
+    "ownerId": "9",
+    "category": "Hiking",
+    "image": "/images/backpack.png"
+  },
+  {
+    "title": "PS5",
+    "description": "Latest model gaming console with two controllers.",
+    "price": 500,
+    "ownerId": "10",
+    "category": "Gaming",
+    "image": "/images/ps5.png"
+  },
+  {
+    "title": "Cat Tree",
+    "description": "Multi-level cat tree with scratching posts.",
+    "price": 90,
+    "ownerId": "11",
+    "category": "Pets",
+    "image": "/images/cattree.png"
+  },
+  {
+    "title": "Garmin Vivoactive 3",
+    "description": "Latest smart watch with heart rate and GPS features.",
+    "price": 299,
+    "ownerId": "12",
+    "category": "IT",
+    "image": "/images/garmin.png"
+  },
+  {
+    "title": "Yoga Mat",
+    "description": "Eco-friendly yoga mat with non-slip surface.",
+    "price": 35,
+    "ownerId": "13",
+    "category": "Freetime",
+    "image": "/images/yogamat.png"
+  },
+  {
+    "title": "Blender",
+    "description": "High-speed blender, perfect for smoothies and shakes.",
+    "price": 150,
+    "ownerId": "14",
+    "category": "Kitchen",
+    "image": "/images/blender.png"
+  },
+  {
+    "title": "Professional Camera",
+    "description": "DSLR camera with high-resolution capabilities for professional photography.",
+    "price": 800,
+    "ownerId": "15",
+    "category": "Freetime",
+    "image": "/images/camera.png"
+  },
+  {
+    "title": "Modern Bookshelf",
+    "description": "Spacious and stylish bookshelf to organize your books and decor items.",
+    "price": 250,
+    "ownerId": "16",
+    "category": "Home",
+    "image": "/images/bookshelf.png"
+  },
+  {
+    "title": "Electric Guitar",
+    "description": "Electric guitar with excellent sound quality and durability.",
+    "price": 500,
+    "ownerId": "17",
+    "category": "Freetime",
+    "image": "/images/electricguitar.png"
+  },
+  {
+    "title": "Hoka Running Shoes",
+    "description": "Comfortable and durable running shoes for long-distance runners.",
+    "price": 120,
+    "ownerId": "18",
+    "category": "Sports",
+    "image": "/images/runningshoes.png"
+  },
+  {
+    "title": "Smart Toaster",
+    "description": "Smart toaster with Wi-Fi connectivity and custom browning settings.",
+    "price": 90,
+    "ownerId": "19",
+    "category": "Kitchen",
+    "image": "/images/smarttoaster.png"
+  },
+  {
+    "title": "Leather Jacket",
+    "description": "High-quality leather jacket for fashion and comfort.",
+    "price": 300,
+    "ownerId": "20",
+    "category": "Clothing",
+    "image": "/images/leatherjacket.png"
+  },
+  {
+    "title": "Mountain Climbing Gear",
+    "description": "Complete set of mountain climbing gear including ropes, hooks, and safety equipment.",
+    "price": 400,
+    "ownerId": "21",
+    "category": "Hiking",
+    "image": "/images/climbinggear.png"
+  },
+  {
+    "title": "Logitech G Pro Wireless",
+    "description": "High-precision gaming mouse with customizable buttons.",
+    "price": 75,
+    "ownerId": "22",
+    "category": "Gaming",
+    "image": "/images/gamingmouse.png"
+  },
+  {
+    "title": "Antique Vase",
+    "description": "Beautiful antique vase from the 19th century, perfect for collectors.",
+    "price": 450,
+    "ownerId": "23",
+    "category": "Home",
+    "image": "/images/vase.png"
+  },
+  {
+    "title": "Pet Bed",
+    "description": "Luxurious and cozy bed for your beloved pet.",
+    "price": 60,
+    "ownerId": "24",
+    "category": "Pets",
+    "image": "/images/petbed.png"
+  },
+  {
+    "title": "Leopard 2A6",
+    "description": "Fully functional German made tank",
+    "price": 40,
+    "ownerId": "25",
+    "category": "Freetime",
+    "image": "/images/leopard.png"
+  },
+  {
+    "title": "122 H63 howitzer",
+    "description": "A well kept soviet artillery piece",
+    "price": 130,
+    "ownerId": "26",
+    "category": "Freetime",
+    "image": "/images/122.png"
+  },
+  {
+    "title": "Smurf soda",
+    "description": "Yummy",
+    "price": 380,
+    "ownerId": "27",
+    "category": "Kitchen",
+    "image": "/images/smurf.png"
+  },
+  {
+    "title": "Football cleats",
+    "description": "Nike football cleats",
+    "price": 60,
+    "ownerId": "28",
+    "category": "Sports",
+    "image": "/images/cleats.png"
+  },
+  {
+    "title": "Marimekko coffee cup",
+    "description": "A new Marimekko coffee cup",
+    "price": 15,
+    "ownerId": "29",
+    "category": "Kitchen",
+    "image": "/images/cup.png"
+  },
+  {
+    "title": "NVIDIA 3080 GPU",
+    "description": "A well kept Nvidia GPU",
+    "price": 700,
+    "ownerId": "30",
+    "category": "IT",
+    "image": "/images/GPU.png"
+  }
+]

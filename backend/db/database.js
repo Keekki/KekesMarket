@@ -1,4 +1,5 @@
 const sqlite3 = require("sqlite3").verbose();
+const fs = require("fs");
 
 const db = new sqlite3.Database(
   "./db/marketplace.db",
@@ -83,34 +84,19 @@ const categories = [
   "Clothing",
   "Hiking",
 ];
-const listings = [
-  {
-    title: "Tennis Racket",
-    description: "Professional grade racket.",
-    price: 150,
-    ownerId: 1,
-    category: "Sports",
-  },
-  {
-    title: "Gaming Laptop",
-    description: "High performance for gaming and software development.",
-    price: 1200,
-    ownerId: 2,
-    category: "IT",
-  },
-  {
-    title: "Large crate",
-    description: "A large crate for a dog.",
-    price: 70,
-    ownerId: 3,
-    additionalInfo: "Only pickup",
-    category: "Pets",
-  },
-];
+
+const listings = JSON.parse(fs.readFileSync("db/listings.json", "utf8"));
 
 listings.forEach((listing) => {
-  const { title, description, price, ownerId, additionalInfo, category } =
-    listing;
+  const {
+    title,
+    description,
+    price,
+    ownerId,
+    additionalInfo,
+    category,
+    image,
+  } = listing;
 
   // SQL to check if the listing already exists
   const checkSql = `SELECT id FROM Listings WHERE title = ? AND description = ? AND ownerId = ?`;
@@ -120,10 +106,10 @@ listings.forEach((listing) => {
     }
 
     if (!row) {
-      const insertSql = `INSERT INTO Listings (title, description, price, ownerId, additionalInfo, category) VALUES (?, ?, ?, ?, ?, ?)`;
+      const insertSql = `INSERT INTO Listings (title, description, price, ownerId, additionalInfo, category, image) VALUES (?, ?, ?, ?, ?, ?, ?)`;
       db.run(
         insertSql,
-        [title, description, price, ownerId, additionalInfo, category],
+        [title, description, price, ownerId, additionalInfo, category, image],
         function (insertErr) {
           if (insertErr) {
             return console.error(insertErr.message);

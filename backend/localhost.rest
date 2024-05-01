@@ -10,6 +10,11 @@ Authorization: Bearer {{TOKEN}}
   "category": "food"
 }
 
+###
+# Get all listings
+GET http://localhost:8000/api/listings
+content-type: application/json
+
 
 ###
 # Sign up a new user

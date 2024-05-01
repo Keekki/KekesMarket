@@ -4,6 +4,7 @@ const session = require("express-session");
 const passport = require("./setup/passport-setup");
 
 require("dotenv").config();
+const path = require("path");
 const app = express();
 
 // Middleware for CORS
@@ -12,6 +13,9 @@ app.use(cors());
 // Built-in middleware for json and urlencoded form parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, "public")));
 
 // Session middleware
 app.use(
