@@ -10,7 +10,7 @@ services:
   frontend:
     image: ${FRONTEND_IMAGE}
     ports:
-      - "8080:8080"
+      - "9000:9000"
     env_file:
       - .env
     restart: always

@@ -9,5 +9,5 @@ RUN npm run build
 # Release stage
 FROM nginx:1.21.5-alpine as release
 COPY --from=build /app/dist/ /usr/share/nginx/html/
-EXPOSE 80
+EXPOSE 9000
 CMD ["nginx", "-g", "daemon off;"]
