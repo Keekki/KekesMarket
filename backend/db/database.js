@@ -37,6 +37,37 @@ db.serialize(() => {
     }
   );
 
+  // Check if the test user exists in the database
+  db.get(`SELECT id FROM users WHERE id = ?`, ["1"], (err, row) => {
+    if (err) {
+      console.error("Error checking for existing user:", err.message);
+    } else if (row) {
+      console.log("Test user already exists with ID:", row.id);
+    } else {
+      // User does not exist, proceed with insertion
+      db.run(
+        `INSERT INTO users (id, name, email, phoneNumber, password_hash, postalCode, city, admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          "1",
+          "Timo Silakka",
+          "timo@gmail.com",
+          "020202",
+          "KovaUkkoTimo",
+          "33520",
+          "Tampere",
+          0,
+        ],
+        function (err) {
+          if (err) {
+            console.error("Error inserting test user:", err.message);
+          } else {
+            console.log("Test user added successfully with ID:", this.lastID);
+          }
+        }
+      );
+    }
+  });
+
   const adminEmail = "matias.frimodig@tuni.fi" || "frimodigmatias@gmail.com";
 
   db.run(
