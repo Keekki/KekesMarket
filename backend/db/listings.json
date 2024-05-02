@@ -13,6 +13,7 @@
     "price": 1200,
     "ownerId": "1",
     "category": "IT",
+    "additionalInfo": "If mailed, responsibility transfers to the buyer",
     "image": "/images/gaminglaptop.png"
   },
   {
@@ -37,6 +38,7 @@
     "price": 350,
     "ownerId": "1",
     "category": "Sports",
+    "additionalInfo": "Only pickup! Payment in cash",
     "image": "/images/mountainbike.png"
   },
   {
@@ -45,6 +47,7 @@
     "price": 450,
     "ownerId": "1",
     "category": "Kitchen",
+    "additionalInfo": "Not available to discuss on business days 9-17",
     "image": "/images/espressomachine.png"
   },
   {
@@ -77,6 +80,7 @@
     "price": 500,
     "ownerId": "1",
     "category": "Gaming",
+    "additionalInfo": "Not available to discuss on business days 9-17",
     "image": "/images/ps5.png"
   },
   {
@@ -85,6 +89,7 @@
     "price": 90,
     "ownerId": "1",
     "category": "Pets",
+    "additionalInfo": "Only pickup!",
     "image": "/images/cattree.png"
   },
   {
@@ -93,6 +98,7 @@
     "price": 299,
     "ownerId": "1",
     "category": "IT",
+    "additionalInfo": "Not available to discuss on business days 9-17",
     "image": "/images/garmin.png"
   },
   {
@@ -117,6 +123,7 @@
     "price": 800,
     "ownerId": "1",
     "category": "Freetime",
+    "additionalInfo": "Not available to discuss on business days 9-17",
     "image": "/images/camera.png"
   },
   {
@@ -125,6 +132,7 @@
     "price": 250,
     "ownerId": "1",
     "category": "Home",
+    "additionalInfo": "Only pickup!",
     "image": "/images/bookshelf.png"
   },
   {
@@ -133,6 +141,7 @@
     "price": 500,
     "ownerId": "1",
     "category": "Freetime",
+    "additionalInfo": "Only pickup!",
     "image": "/images/electricguitar.png"
   },
   {
@@ -141,6 +150,7 @@
     "price": 120,
     "ownerId": "1",
     "category": "Sports",
+    "additionalInfo": "Not used!",
     "image": "/images/runningshoes.png"
   },
   {
@@ -181,6 +191,7 @@
     "price": 450,
     "ownerId": "1",
     "category": "Home",
+    "additionalInfo": "Only pickup!",
     "image": "/images/vase.png"
   },
   {
@@ -197,6 +208,7 @@
     "price": 40,
     "ownerId": "1",
     "category": "Freetime",
+    "additionalInfo": "Only pickup! Payment in cash",
     "image": "/images/leopard.png"
   },
   {
@@ -205,6 +217,7 @@
     "price": 130,
     "ownerId": "1",
     "category": "Freetime",
+    "additionalInfo": "Only pickup!",
     "image": "/images/122.png"
   },
   {
@@ -213,6 +226,7 @@
     "price": 380,
     "ownerId": "1",
     "category": "Kitchen",
+    "additionalInfo": "Not available to discuss on business days 9-17",
     "image": "/images/smurf.png"
   },
   {
@@ -221,6 +235,7 @@
     "price": 60,
     "ownerId": "1",
     "category": "Sports",
+    "additionalInfo": "Not available to discuss on business days 9-17",
     "image": "/images/cleats.png"
   },
   {
@@ -229,6 +244,7 @@
     "price": 15,
     "ownerId": "1",
     "category": "Kitchen",
+    "additionalInfo": "Only pickup! Payment in cash",
     "image": "/images/cup.png"
   },
   {
@@ -237,6 +253,7 @@
     "price": 700,
     "ownerId": "1",
     "category": "IT",
+    "additionalInfo": "If mailed, responsibility transfers to the buyer",
     "image": "/images/GPU.png"
   }
 ]
