@@ -148,6 +148,7 @@ const loginUser = async (req, res) => {
   }
 };
 
+// Endpoint to get all the user details
 const getUserDetails = async (req, res) => {
   const userId = req.params.userId; // Get the user ID from the verified token
 
@@ -178,8 +179,30 @@ const getUserDetails = async (req, res) => {
   }
 };
 
+// Endpoint to get public user details
+const getPublicUserDetails = (req, res) => {
+  const userId = req.params.userId;
+
+  db.get(
+    "SELECT name, email, phoneNumber, city FROM users WHERE id = ?",
+    [userId],
+    (err, row) => {
+      if (err) {
+        res.status(400).json({ error: err.message });
+        return;
+      }
+      if (row) {
+        res.json(row);
+      } else {
+        res.status(404).json({ message: "User not found" });
+      }
+    }
+  );
+};
+
 module.exports = {
   signUpUser,
   loginUser,
   getUserDetails,
+  getPublicUserDetails,
 };

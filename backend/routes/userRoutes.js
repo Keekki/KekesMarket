@@ -5,6 +5,7 @@ const {
   signUpUser,
   loginUser,
   getUserDetails,
+  getPublicUserDetails,
 } = require("../controllers/userController");
 
 const router = express.Router();
@@ -12,6 +13,7 @@ const router = express.Router();
 router.post("/users/signup", signUpUser);
 router.post("/users/login", loginUser);
 router.get("/users/details/:userId", verifyToken, getUserDetails);
+router.get("/users/public/:userId", getPublicUserDetails);
 
 // Redirects to the google login
 router.get(
