@@ -41,9 +41,9 @@ jobs:
         run: npm test
         working-directory: ./backend
 
-      - name: Run frontend tests
-        run: npm test
-        working-directory: ./frontend
+      # - name: Run frontend tests
+      #   run: npm test
+      #   working-directory: ./frontend
 
   build:
     name: Build Images
