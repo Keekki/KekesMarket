@@ -3,6 +3,7 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import "../../styling/FeaturedItems.css";
 import ConnectWithoutContactOutlinedIcon from "@mui/icons-material/ConnectWithoutContactOutlined";
+import CircularProgress from "@mui/material/CircularProgress";
 
 interface Listing {
   id: number;
@@ -24,6 +25,7 @@ interface User {
 
 const FeaturedItems: React.FC = () => {
   const [featuredItems, setFeaturedItems] = useState<Listing[]>([]);
+  const [currentItem, setCurrentItem] = useState<Listing | null>(null);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [open, setOpen] = useState(false);
 
@@ -37,11 +39,12 @@ const FeaturedItems: React.FC = () => {
       .catch((error) => console.error("Error fetching featured items:", error));
   }, []);
 
-  const fetchUserDetails = (ownerId: string) => {
-    fetch(`${import.meta.env.VITE_API_URL}/users/public/${ownerId}`)
+  const fetchUserDetails = (item: Listing) => {
+    fetch(`${import.meta.env.VITE_API_URL}/users/public/${item.ownerId}`)
       .then((response) => response.json())
       .then((data) => {
         setSelectedUser(data);
+        setCurrentItem(item);
         setOpen(true);
       })
       .catch((error) => console.error("Error fetching user details:", error));
@@ -60,7 +63,7 @@ const FeaturedItems: React.FC = () => {
             <strong>{item.title}</strong>
             <p>{item.description}</p>
             <strong>${item.price.toFixed(2)}</strong>
-            <button onClick={() => fetchUserDetails(item.ownerId)}>
+            <button onClick={() => fetchUserDetails(item)}>
               Contact the Seller <ConnectWithoutContactOutlinedIcon />
             </button>
             <Popup
@@ -72,7 +75,7 @@ const FeaturedItems: React.FC = () => {
                 <a className="close" onClick={() => setOpen(false)}>
                   &times;
                 </a>
-                <div className="header"> {item.title} </div>
+                <div className="header"> {currentItem?.title} </div>
                 <div className="content">
                   {selectedUser ? (
                     <>
@@ -91,10 +94,10 @@ const FeaturedItems: React.FC = () => {
                       <p>
                         Where? <strong>{selectedUser.city}</strong>
                       </p>
-                      <p>NOTE from the seller: {item.additionalInfo}</p>
+                      <p>NOTE from the seller: {currentItem?.additionalInfo}</p>
                     </>
                   ) : (
-                    <p>Loading...</p>
+                    <CircularProgress color="inherit" />
                   )}
                 </div>
               </div>
