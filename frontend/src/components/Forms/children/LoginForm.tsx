@@ -14,6 +14,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
   const [error, setError] = useState<string>("");
+  console.log(":D", error);
 
   const fields = [
     { name: "email", label: "Email", required: true, type: "email" },
