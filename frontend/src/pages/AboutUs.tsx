@@ -6,18 +6,18 @@ const AboutUs: React.FC = () => {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    height: "83.7vh",
+    height: "88vh",
     width: "auto",
-    backgroundColor: "black",
-    color: "white",
-    fontFamily: "Garamond",
+    backgroundColor: "white",
+    color: "grey",
+    fontFamily: "Courier New",
     padding: "0 20px",
     boxSizing: "border-box",
     textAlign: "center",
   };
 
   const headerStyle: React.CSSProperties = {
-    color: "orange",
+    color: "black",
     marginBottom: "20px",
   };
 
@@ -30,7 +30,7 @@ const AboutUs: React.FC = () => {
     marginTop: "20px",
   };
 
-  const spanStyle: React.CSSProperties = { color: "orange" };
+  const spanStyle: React.CSSProperties = { color: "black" };
 
   return (
     <div style={style}>
