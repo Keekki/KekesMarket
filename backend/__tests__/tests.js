@@ -11,7 +11,6 @@ beforeAll(async () => {
     email VARCHAR(50) NOT NULL,
     password_hash VARCHAR(60),
     phoneNumber VARCHAR(15),
-    street VARCHAR(60),
     postalCode VARCHAR(10),
     city VARCHAR(30),
     googleId VARCHAR(255),
@@ -52,7 +51,6 @@ describe("User Authentication", () => {
       email: "timo@gmail.com",
       password: "password123",
       phoneNumber: "050 123 4567",
-      street: "Kuntokatu",
       postalCode: "33520",
       city: "Tampere",
     });
@@ -68,7 +66,6 @@ describe("User Authentication", () => {
       name: "Timo Silakka",
       email: "timo@gmail.com",
       password: "password123",
-      street: "Kuntokatu",
       postalCode: "33520",
       city: "Tampere",
     });
@@ -97,7 +94,6 @@ describe("Listing Operations", () => {
       name: "Timo Silakka",
       email: "timo@gmail.com",
       password: "password123",
-      street: "Kuntokatu",
       postalCode: "33520",
       city: "Tampere",
     });
