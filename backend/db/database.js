@@ -37,7 +37,7 @@ db.serialize(() => {
     }
   );
 
-  // Check if the test user exists in the database
+  // Check if the example user exists in the database
   db.get(`SELECT id FROM users WHERE id = ?`, ["1"], (err, row) => {
     if (err) {
       console.error("Error checking for existing user:", err.message);
