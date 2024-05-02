@@ -14,8 +14,6 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "http://localhost:8000/login/oauth2/callback",
     },
-    // console.log("clientID", process.env.GOOGLE_CLIENT_ID),
-    // console.log("clientSecret", process.env.GOOGLE_CLIENT_SECRET),
     async (accessToken, refreshToken, profile, done) => {
       console.log("Profile: ", profile);
       // Check if user already exists in the db
