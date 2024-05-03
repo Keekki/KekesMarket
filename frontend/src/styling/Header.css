@@ -102,23 +102,23 @@
   position: relative;
   display: inline-block;
   cursor: pointer;
-  color: orange !important;
-  font-size: 1.2rem !important;
+  color: black !important;
+  font-size: 1rem !important;
   margin-top: 10px !important;
   position: relative;
   top: -10px;
   cursor: pointer;
-  font-family: Garamond;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .user-menu:hover {
-  color: white !important;
+  color: rgb(0, 0, 0, 0.5) !important;
   transition: 0.3s ease-in;
 }
 
 .user-menu a {
   font-size: 1.1rem !important;
-  color: white !important;
+  color: black !important;
   cursor: default !important;
 }
 
@@ -127,8 +127,8 @@
   cursor: default;
   top: 100%; /* Position it just below the user menu */
   left: 0;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   border: 1px solid white;
   padding: 10px;
   z-index: 1000; /* Ensure it's above other content */
