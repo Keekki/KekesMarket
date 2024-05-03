@@ -1,4 +1,5 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const verifyToken = require("../middleware/verifyToken.js");
 const {
@@ -23,14 +24,15 @@ router.get(
 
 router.get(
   "/login/oauth2/callback",
-  (req, res, next) => {
-    console.log("Callback URL hit with query:", req.query);
-    next();
-  },
   passport.authenticate("google", { failureRedirect: "/users/login" }),
   (req, res) => {
-    console.log("Authentication successful, user:", req.user);
-    res.redirect("/");
+    const token = jwt.sign(
+      { id: req.user.id, email: req.user.email },
+      process.env.JWT_KEY,
+      { expiresIn: "1h" }
+    );
+    // Redirect with token to frontend
+    res.redirect(`${process.env.FRONTEND_URL}/auth-handler?token=${token}`);
   }
 );
 
