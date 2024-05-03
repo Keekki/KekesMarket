@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { TextField, Button } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import GoogleIcon from "@mui/icons-material/Google";
 import "../../../styling/Form.css";
 
 interface Field {
@@ -17,6 +18,7 @@ interface FormProps {
   submitHandler: (values: any) => Promise<any>;
   submitLabel: string;
   title: string;
+  onGoogleLogin?: () => void;
 }
 
 const Form: React.FC<FormProps> = ({
@@ -24,6 +26,7 @@ const Form: React.FC<FormProps> = ({
   submitHandler,
   submitLabel,
   title,
+  onGoogleLogin,
 }) => {
   const location = useLocation();
   const [values, setValues] = useState<{ [key: string]: any }>(
@@ -113,14 +116,14 @@ const Form: React.FC<FormProps> = ({
             helperText={
               submitted && errors[field.name] ? errors[field.name] : ""
             }
-            InputLabelProps={{ shrink: true, style: { color: "white" } }}
+            InputLabelProps={{ shrink: true, style: { color: "black" } }}
             sx={{
               "& .MuiOutlinedInput-root": {
-                "& fieldset": { borderColor: "white" },
-                "&:hover fieldset": { borderColor: "white" },
-                "&.Mui-focused fieldset": { borderColor: "white" },
+                "& fieldset": { borderColor: "black" },
+                "&:hover fieldset": { borderColor: "black" },
+                "&.Mui-focused fieldset": { borderColor: "black" },
               },
-              "& .MuiInputBase-input": { color: "white" },
+              "& .MuiInputBase-input": { color: "black" },
             }}
           />
         ))}
@@ -128,24 +131,41 @@ const Form: React.FC<FormProps> = ({
           type="submit"
           variant="outlined"
           sx={{
-            color: "white",
-            borderColor: "white",
+            color: "black",
+            fontFamily: "Courier New",
+            borderColor: "black",
             "&:hover": {
-              backgroundColor: "transparent",
-              color: "orange",
-              borderColor: "orange",
+              backgroundColor: "whitesmoke",
+              color: "grey",
+              borderColor: "black",
               transition: "0.3s ease-in",
             },
           }}
         >
           {submitLabel}
         </Button>
+        {onGoogleLogin && (
+          <Button
+            onClick={onGoogleLogin}
+            style={{
+              marginTop: "10px",
+              display: "flex",
+              color: "black",
+              fontFamily: "Courier New",
+              textDecoration: "none",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            Log in with <GoogleIcon style={{ marginLeft: "10px" }} />
+          </Button>
+        )}
       </form>
       {location.pathname === "/login" && (
         <Link
           to="/signup"
           style={{
-            color: "orange",
+            color: "black",
             textDecoration: "none",
             display: "block",
             marginTop: "20px",

@@ -4,9 +4,10 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   margin-top: -50px;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .form form {
@@ -16,8 +17,7 @@
 }
 
 .form h2 {
-  font-family: Garamond;
-  color: orange;
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,5 +25,15 @@
 
 .form .MuiTextField-root {
   width: 300px;
-  color: white;
+  color: black;
+}
+
+.MuiInputBase-input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: black !important;
+}
+
+.MuiInputBase-input:-moz-autofill {
+  box-shadow: 0 0 0 30px white inset !important;
+  text-fill-color: black !important;
 }

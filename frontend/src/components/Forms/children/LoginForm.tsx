@@ -47,12 +47,17 @@ const LoginForm: React.FC<LoginFormProps> = () => {
     }
   };
 
+  const handleGoogleLogin = () => {
+    window.location.href = `${import.meta.env.VITE_API_URL}/auth/google`;
+  };
+
   return (
     <Form
       fields={fields}
       submitHandler={handleLoginSubmit}
       submitLabel="Log In!"
       title="Log In!"
+      onGoogleLogin={handleGoogleLogin}
     />
   );
 };
