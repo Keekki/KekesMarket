@@ -9,21 +9,31 @@ import SignUpForm from "./components/Forms/children/SignUpForm";
 import AboutUs from "./pages/AboutUs";
 import AuthHandler from "./components/AuthHandler";
 
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme({
+  typography: {
+    fontFamily: "Courier New",
+  },
+});
+
 const App: React.FC = () => {
   return (
-    <UserContextProvider>
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/signup" element={<SignUpForm />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/auth-handler" element={<AuthHandler />} />
-        </Routes>
-        <Toaster position="top-right" reverseOrder={false} />
-      </Router>
-    </UserContextProvider>
+    <ThemeProvider theme={theme}>
+      <UserContextProvider>
+        <Router>
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/signup" element={<SignUpForm />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/auth-handler" element={<AuthHandler />} />
+          </Routes>
+          <Toaster position="top-right" reverseOrder={false} />
+        </Router>
+      </UserContextProvider>
+    </ThemeProvider>
   );
 };
 
