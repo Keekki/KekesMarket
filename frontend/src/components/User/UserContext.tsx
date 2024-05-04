@@ -14,7 +14,6 @@ interface UserContextType {
   logoutUser: () => void;
 }
 
-// Providing a default value that matches the context type
 const defaultContextValue: UserContextType = {
   user: null,
   setUser: () => {},
@@ -26,20 +25,33 @@ export const UserContext = createContext<UserContextType>(defaultContextValue);
 export const UserContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUserState] = useState<User | null>(null);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      const parsedUser = JSON.parse(storedUser) as User;
-      setUser(parsedUser);
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setUserState(parsedUser);
+      } catch (error) {
+        console.error("Failed to parse user data from localStorage:", error);
+      }
     }
   }, []);
 
+  const setUser = (userData: User | null) => {
+    if (userData) {
+      localStorage.setItem("user", JSON.stringify(userData));
+      setUserState(userData);
+    } else {
+      localStorage.removeItem("user");
+      setUserState(null);
+    }
+  };
+
   const logoutUser = () => {
     setUser(null);
-    localStorage.removeItem("user");
-    toast.success("Cya later :)", {
+    toast.success("Hope to see you again! :)", {
       style: {
         border: "1px solid black",
         padding: "16px",
