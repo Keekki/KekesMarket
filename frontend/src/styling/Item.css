@@ -97,6 +97,21 @@
   color: #333;
 }
 
+.my-listings-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 10px 0;
+  flex-wrap: nowrap;
+}
+
+.listing-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 20%;
+  margin-top: 10px;
+}
+
 .popup-content {
   background: transparent !important;
   border: none !important;

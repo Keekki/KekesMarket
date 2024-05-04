@@ -64,9 +64,6 @@ const AccountMenu: React.FC<AccountMenuProps> = ({
         <MenuItem component={Link} to="/create-listing">
           Create a listing
         </MenuItem>
-        <MenuItem component={Link} to="/edit-listings">
-          Edit my listings
-        </MenuItem>
         <MenuItem onClick={() => logoutUser()}>
           <Logout fontSize="small" />
           Logout

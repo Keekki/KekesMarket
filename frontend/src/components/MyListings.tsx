@@ -1,8 +1,11 @@
 import { useState, useEffect, useContext } from "react";
-
 import { UserContext } from "./User/UserContext";
 import Item from "./Item";
 import { toast } from "react-hot-toast";
+import EditButton from "./Buttons/EditButton";
+import DeleteButton from "./Buttons/DeleteButton";
+
+import "../styling/MyListings.css";
 
 interface Listing {
   id: number;
@@ -20,32 +23,52 @@ const MyListings = () => {
   const [listings, setListings] = useState<Listing[]>([]);
 
   useEffect(() => {
-    // Function to fetch listings
-    const fetchListings = () => {
-      if (user && user.token) {
-        fetch(`${import.meta.env.VITE_API_URL}/api/user/listings`, {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.error) {
-              toast.error("Failed to fetch listings: " + data.message);
-            } else {
-              setListings(data);
-            }
-          })
-          .catch((error) => {
-            console.error("Error fetching listings:", error);
-            toast.error("Failed to fetch listings.");
-          });
-      }
-    };
-
-    // Call fetchListings when the component mounts and when user changes
     fetchListings();
-  }, [user]); // Depend only on user state
+  }, [user]);
+
+  const fetchListings = () => {
+    if (user && user.token) {
+      fetch(`${import.meta.env.VITE_API_URL}/api/user/listings`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.error) {
+            toast.error("Failed to fetch listings: " + data.message);
+          } else {
+            setListings(data);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching listings:", error);
+          toast.error("Failed to fetch listings.");
+        });
+    }
+  };
+
+  const handleDelete = (id: string) => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/listings/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${user?.token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          toast.error("Failed to delete listing: " + data.message);
+        } else {
+          toast.success("Listing deleted successfully");
+          fetchListings(); // Refresh listings
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting listing:", error);
+        toast.error("Failed to delete listing.");
+      });
+  };
 
   return (
     <div>
@@ -58,17 +81,20 @@ const MyListings = () => {
       >
         Your Listings
       </h1>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          padding: "20px",
-        }}
-      >
+      <div className="my-listings-container">
         {listings.length > 0 ? (
           listings.map((listing) => (
-            <Item key={listing.id} itemId={listing.id} />
+            <div key={listing.id} className="listing-item-container">
+              <Item itemId={listing.id} />
+
+              <div className="listing-buttons">
+                <EditButton id={listing.id.toString()} />
+                <DeleteButton
+                  id={listing.id.toString()}
+                  onConfirm={handleDelete}
+                />
+              </div>
+            </div>
           ))
         ) : (
           <p
