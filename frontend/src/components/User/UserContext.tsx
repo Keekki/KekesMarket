@@ -29,10 +29,11 @@ export const UserContextProvider: React.FC<{ children: ReactNode }> = ({
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    if (storedUser) {
+    const storedToken = localStorage.getItem("token");
+    if (storedUser && storedToken) {
       try {
         const parsedUser = JSON.parse(storedUser);
-        setUserState(parsedUser);
+        setUserState({ ...parsedUser, token: storedToken });
       } catch (error) {
         console.error("Failed to parse user data from localStorage:", error);
       }

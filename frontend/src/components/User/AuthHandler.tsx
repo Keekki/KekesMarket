@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import { UserContext } from "./User/UserContext";
+import { UserContext } from "./UserContext";
 import { toast } from "react-hot-toast";
 
 interface DecodedToken {
@@ -27,7 +27,6 @@ const AuthHandler: React.FC = () => {
   }, []);
 
   const verifyAndFetchUserDetails = async (token: string) => {
-    console.log("function called");
     try {
       const decoded: DecodedToken = jwtDecode(token);
       const response = await fetch(

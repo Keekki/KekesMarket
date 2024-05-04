@@ -57,7 +57,11 @@ const Form: React.FC<FormProps> = ({
     const newErrors: { [key: string]: string } = {};
     fields.forEach((field) => {
       const fieldValue = values[field.name];
-      if (typeof fieldValue === "string" && fieldValue.trim() === "") {
+      if (
+        field.required &&
+        typeof fieldValue === "string" &&
+        fieldValue.trim() === ""
+      ) {
         newErrors[field.name] = `${field.label} is required`;
       }
     });
@@ -74,19 +78,6 @@ const Form: React.FC<FormProps> = ({
         const response = await submitHandler(values);
         if (response && response.status === 401) {
           newErrors.password = "Password is incorrect.";
-        } else {
-          toast.success("Logged in!", {
-            style: {
-              border: "1px solid black",
-              padding: "16px",
-              color: "black",
-              background: "white",
-            },
-            iconTheme: {
-              primary: "black",
-              secondary: "white",
-            },
-          });
         }
       } catch (error) {
         console.error("Error submitting form:", error);

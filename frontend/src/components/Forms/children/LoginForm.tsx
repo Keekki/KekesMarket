@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../User/UserContext";
 import Form from "../parent/Form";
+import toast from "react-hot-toast";
 
 interface LoginFormProps {}
 
@@ -38,6 +39,18 @@ const LoginForm: React.FC<LoginFormProps> = () => {
       if (response.status === 200) {
         const data = await response.json();
         setUser(data);
+        toast.success("Logged in!", {
+          style: {
+            border: "1px solid black",
+            padding: "16px",
+            color: "black",
+            background: "white",
+          },
+          iconTheme: {
+            primary: "black",
+            secondary: "white",
+          },
+        });
         navigate("/");
       } else {
         setError("An unexpected error occurred. Please try again.");

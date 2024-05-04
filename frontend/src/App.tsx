@@ -7,7 +7,9 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginForm from "./components/Forms/children/LoginForm";
 import SignUpForm from "./components/Forms/children/SignUpForm";
 import AboutUs from "./pages/AboutUs";
-import AuthHandler from "./components/AuthHandler";
+import AuthHandler from "./components/User/AuthHandler";
+import CreateListing from "./components/Forms/children/CreateListing";
+import MyListings from "./components/MyListings";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -29,6 +31,8 @@ const App: React.FC = () => {
             <Route path="/signup" element={<SignUpForm />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/auth-handler" element={<AuthHandler />} />
+            <Route path="/create-listing" element={<CreateListing />} />
+            <Route path="/my-listings" element={<MyListings />} />
           </Routes>
           <Toaster position="top-right" reverseOrder={false} />
         </Router>
