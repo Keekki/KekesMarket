@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { UserContext } from "./User/UserContext";
 import Item from "./Item";
 import { toast } from "react-hot-toast";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditButton from "./Buttons/EditButton";
 import DeleteButton from "./Buttons/DeleteButton";
 
@@ -60,7 +61,16 @@ const MyListings = () => {
         if (data.error) {
           toast.error("Failed to delete listing: " + data.message);
         } else {
-          toast.success("Listing deleted successfully");
+          toast.success("Listing deleted", {
+            icon: <DeleteOutlineIcon style={{ color: "red" }} />,
+            style: {
+              border: "1px solid black",
+              padding: "16px",
+              color: "black",
+              background: "white",
+              fontFamily: "Courier New",
+            },
+          });
           fetchListings(); // Refresh listings
         }
       })

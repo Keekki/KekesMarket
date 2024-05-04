@@ -45,6 +45,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
             padding: "16px",
             color: "black",
             background: "white",
+            fontFamily: "Courier New",
           },
           iconTheme: {
             primary: "black",

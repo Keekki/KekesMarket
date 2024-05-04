@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, ReactNode } from "react";
 import toast from "react-hot-toast";
+import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
 
 interface User {
   id: string;
@@ -53,15 +54,13 @@ export const UserContextProvider: React.FC<{ children: ReactNode }> = ({
   const logoutUser = () => {
     setUser(null);
     toast.success("Hope to see you again! :)", {
+      icon: <EmojiPeopleIcon style={{ color: "black" }} />,
       style: {
         border: "1px solid black",
         padding: "16px",
         color: "black",
         background: "white",
-      },
-      iconTheme: {
-        primary: "black",
-        secondary: "white",
+        fontFamily: "Courier New",
       },
     });
   };

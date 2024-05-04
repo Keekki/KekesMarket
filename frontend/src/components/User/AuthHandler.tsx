@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import { UserContext } from "./UserContext";
 import { toast } from "react-hot-toast";
+import GoogleIcon from "@mui/icons-material/Google";
+import { UserContext } from "./UserContext";
 
 interface DecodedToken {
   id: string;
@@ -39,15 +40,13 @@ const AuthHandler: React.FC = () => {
       if (response.ok) {
         setUser(data);
         toast.success("Logged in via Google!", {
+          icon: <GoogleIcon style={{ color: "black" }} />,
           style: {
             border: "1px solid black",
             padding: "16px",
             color: "black",
             background: "white",
-          },
-          iconTheme: {
-            primary: "black",
-            secondary: "white",
+            fontFamily: "Courier New",
           },
         });
         navigate("/");

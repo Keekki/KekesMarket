@@ -53,11 +53,21 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ id, onConfirm }) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button
+            onClick={handleClose}
+            style={{
+              color: "black",
+              fontFamily: "Courier New",
+              border: "none",
+            }}
+          >
             Cancel
           </Button>
-          <Button onClick={handleDelete} color="primary" autoFocus>
-            Confirm
+          <Button
+            onClick={handleDelete}
+            style={{ minWidth: "40px", color: "red" }}
+          >
+            <DeleteOutlineIcon />
           </Button>
         </DialogActions>
       </Dialog>
