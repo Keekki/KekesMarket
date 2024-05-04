@@ -85,7 +85,11 @@ const Item: React.FC<{ itemId: number }> = ({ itemId }) => {
                       </p>
                       <p>or by phone:</p>
                       <p>
-                        <strong>{selectedUser.phoneNumber}</strong>
+                        <strong>
+                          {selectedUser.phoneNumber
+                            ? selectedUser.phoneNumber
+                            : "This user has not shared a phone number :("}
+                        </strong>
                       </p>
                       <p>
                         Where? <strong>{selectedUser.city}</strong>
