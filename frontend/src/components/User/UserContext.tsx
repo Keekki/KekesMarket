@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect, ReactNode } from "react";
+import toast from "react-hot-toast";
 
 interface User {
   id: string;
@@ -38,6 +39,18 @@ export const UserContextProvider: React.FC<{ children: ReactNode }> = ({
   const logoutUser = () => {
     setUser(null);
     localStorage.removeItem("user");
+    toast.success("Cya later :)", {
+      style: {
+        border: "1px solid black",
+        padding: "16px",
+        color: "black",
+        background: "white",
+      },
+      iconTheme: {
+        primary: "black",
+        secondary: "white",
+      },
+    });
   };
 
   return (

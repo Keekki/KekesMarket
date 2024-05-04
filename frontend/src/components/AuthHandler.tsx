@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { UserContext } from "./User/UserContext";
@@ -14,17 +14,20 @@ interface DecodedToken {
 const AuthHandler: React.FC = () => {
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
+  const tokenProcessed = useRef(false); // Using useRef to prevent the function to be called twice
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get("token");
-    if (token) {
+    if (token && !tokenProcessed.current) {
+      tokenProcessed.current = true;
       localStorage.setItem("token", token);
       verifyAndFetchUserDetails(token);
     }
   }, []);
 
   const verifyAndFetchUserDetails = async (token: string) => {
+    console.log("function called");
     try {
       const decoded: DecodedToken = jwtDecode(token);
       const response = await fetch(
@@ -36,7 +39,18 @@ const AuthHandler: React.FC = () => {
       const data = await response.json();
       if (response.ok) {
         setUser(data);
-        toast.success("Logged in via Google!");
+        toast.success("Logged in via Google!", {
+          style: {
+            border: "1px solid black",
+            padding: "16px",
+            color: "black",
+            background: "white",
+          },
+          iconTheme: {
+            primary: "black",
+            secondary: "white",
+          },
+        });
         navigate("/");
       } else {
         throw new Error(data.message);

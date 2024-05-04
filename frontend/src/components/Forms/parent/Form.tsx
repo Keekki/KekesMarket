@@ -74,18 +74,17 @@ const Form: React.FC<FormProps> = ({
         const response = await submitHandler(values);
         if (response && response.status === 401) {
           newErrors.password = "Password is incorrect.";
-        } else if (response && response.status === 200) {
+        } else {
           toast.success("Logged in!", {
             style: {
-              border: "1px solid orange",
+              border: "1px solid black",
               padding: "16px",
-              color: "white",
-              background: "black",
-              marginLeft: "1100px",
+              color: "black",
+              background: "white",
             },
             iconTheme: {
-              primary: "orange",
-              secondary: "black",
+              primary: "black",
+              secondary: "white",
             },
           });
         }

@@ -1,19 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket, faUser } from "@fortawesome/free-solid-svg-icons";
 
 import { UserContext } from "./User/UserContext";
-import UserMenuPopup from "./User/UserMenuPopup";
+import AccountMenu from "./User/AccountMenu";
 import "../styling/Header.css";
 
 const Header: React.FC = () => {
-  const { user, logoutUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
-  const handleLogout = () => {
-    logoutUser();
+  const handleUserMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -32,9 +37,13 @@ const Header: React.FC = () => {
           <li className="login-li">
             {user ? (
               <div className="user-menu">
-                {user.name}
+                <span onClick={handleUserMenuClick}>{user.name}</span>
                 <FontAwesomeIcon icon={faUser} className="login-icon" />
-                <UserMenuPopup user={user} handleLogout={handleLogout} />
+                <AccountMenu
+                  anchorEl={anchorEl}
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                />
               </div>
             ) : (
               <Link to="/login" className="login-link">
