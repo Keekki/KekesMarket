@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../User/UserContext";
 import Form from "../parent/Form";
@@ -13,9 +13,36 @@ interface LoginFormValues {
 
 const LoginForm: React.FC<LoginFormProps> = () => {
   const navigate = useNavigate();
-  const { setUser } = useContext(UserContext);
+  const { setUser, logoutUser } = useContext(UserContext);
   const [error, setError] = useState<string>("");
   console.log(":D", error);
+  const logoutTimer = 30 * 60 * 1000; // 30 minutes
+
+  useEffect(() => {
+    const events = ["click", "mousemove", "keypress", "scroll", "touchstart"];
+    let timeoutId: string | number | NodeJS.Timeout | undefined;
+
+    const resetTimer = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        logoutUser(); // Use logoutUser from context
+        navigate("/login");
+      }, logoutTimer);
+    };
+
+    events.forEach((event) => {
+      window.addEventListener(event, resetTimer);
+    });
+
+    resetTimer(); // Initialize timer on component mount
+
+    return () => {
+      clearTimeout(timeoutId); // Clear timeout on component unmount
+      events.forEach((event) => {
+        window.removeEventListener(event, resetTimer);
+      });
+    };
+  }, [logoutUser, navigate]);
 
   const fields = [
     { name: "email", label: "Email", required: true, type: "email" },
