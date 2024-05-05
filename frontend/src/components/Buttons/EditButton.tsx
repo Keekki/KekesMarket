@@ -7,6 +7,10 @@ import {
   DialogContent,
   TextField,
   DialogTitle,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
 } from "@mui/material";
 import { toast } from "react-hot-toast";
 
@@ -25,8 +29,19 @@ const EditButton = ({ id }: EditButtonProps) => {
     category: "",
   });
 
+  const categories = [
+    "Freetime",
+    "Kitchen",
+    "Sports",
+    "IT",
+    "Gaming",
+    "Pets",
+    "Home",
+    "Clothing",
+    "Hiking",
+  ];
+
   useEffect(() => {
-    // Fetch the current listing data
     fetch(`${import.meta.env.VITE_API_URL}/api/listings/${id}`)
       .then((response) => response.json())
       .then((data) => {
@@ -53,8 +68,22 @@ const EditButton = ({ id }: EditButtonProps) => {
     setOpen(false);
   };
 
-  const handleChange = (event: { target: { name: any; value: any } }) => {
-    const { name, value } = event.target;
+  const handleChange = (
+    event: React.ChangeEvent<
+      HTMLInputElement | { name?: string; value: unknown }
+    >
+  ) => {
+    const name = event.target.name || "";
+    const value = event.target.value;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSelectChange = (event: SelectChangeEvent<string>) => {
+    const name = event.target.name;
+    const value = event.target.value;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -75,23 +104,10 @@ const EditButton = ({ id }: EditButtonProps) => {
         if (data.error) {
           toast.error("Failed to update listing: " + data.message);
         } else {
-          toast.success("Listing updated successfully", {
-            style: {
-              border: "1px solid black",
-              padding: "16px",
-              color: "black",
-              background: "white",
-              fontFamily: "Courier New",
-            },
-            iconTheme: {
-              primary: "black",
-              secondary: "white",
-            },
-          });
-
+          toast.success("Listing updated successfully");
           handleClose();
           setTimeout(() => {
-            window.location.reload(); // Refresh page 2 seconds after successful edit
+            window.location.reload();
           }, 2000);
         }
       })
@@ -171,16 +187,23 @@ const EditButton = ({ id }: EditButtonProps) => {
             value={formData.additionalInfo}
             onChange={handleChange}
           />
-          <TextField
-            margin="dense"
-            id="category"
-            label="Category"
-            type="text"
-            fullWidth
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-          />
+          <FormControl fullWidth margin="dense">
+            <InputLabel id="category-label">Category</InputLabel>
+            <Select
+              labelId="category-label"
+              id="category"
+              name="category"
+              value={formData.category}
+              onChange={handleSelectChange}
+              label="Category"
+            >
+              {categories.map((category) => (
+                <MenuItem key={category} value={category}>
+                  {category}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </DialogContent>
         <DialogActions>
           <Button
