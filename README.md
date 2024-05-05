@@ -22,6 +22,7 @@ The app is running at: https://kekesmarket.onrender.com/
 - **TypeScript**: A typed superset of JavaScript that compiles to plain JavaScript.
 - **Vite**: Frontend tooling for faster and leaner development.
 - **CSS**: Styling of the web components.
+- **MUI**: Components from Material-UI
 
 ### DevOps
 
@@ -101,3 +102,4 @@ Project Link: [https://github.com/Keekki/KekesMarket](https://github.com/Keekki/
 - [React Documentation](https://reactjs.org/)
 - [Node.js](https://nodejs.org/)
 - [Docker](https://www.docker.com/)
+- [MUI](https://mui.com/)
