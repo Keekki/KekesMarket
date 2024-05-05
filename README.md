@@ -1,6 +1,6 @@
 # Marketplace Application
 
-This is a full-stack web application designed for buying and selling items in a marketplace environment. It allows users to list items for sale, edit and delete their own listings and browse items listed by other users. The platform aims to connect buyers and sellers in a user-friendly and secure environment.
+This is a full-stack web application designed for buying and selling items in a marketplace environment. It allows users to list items for sale, edit and delete their own listings and browse items listed by other users. The platform aims to connect buyers and sellers in a user-friendly and secure environment. The user is able to either create an account, or log in with a Google account!
 
 # Deployment
 
