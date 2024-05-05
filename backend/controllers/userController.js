@@ -200,9 +200,31 @@ const getPublicUserDetails = (req, res) => {
   );
 };
 
+const updateUserDetails = async (req, res) => {
+  const { userId } = req.params;
+  const { phoneNumber, city } = req.body;
+
+  if (!userId) {
+    return res.status(400).json({ message: "User ID is required" });
+  }
+
+  try {
+    const sql = `UPDATE users SET phoneNumber = ?, city = ? WHERE id = ?`;
+    db.run(sql, [phoneNumber, city, userId], function (err) {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json({ message: "User updated successfully", changes: this.changes });
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to update user details" });
+  }
+};
+
 module.exports = {
   signUpUser,
   loginUser,
   getUserDetails,
   getPublicUserDetails,
+  updateUserDetails,
 };

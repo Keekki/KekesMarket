@@ -39,7 +39,7 @@ The app is running at: https://kekesmarket.onrender.com/
 - **User Authentication**: Secure login and registration system for users.
 - **Item Listing**: Users can list items they want to sell with details like title, description, price, and category.
 - **Browse Items**: Users can browse listed items and filter them based on categories and price, also search by keywords.
-- **User Profiles**: Users can view and edit (in the future) their profiles, and view their own listings.
+- **User Profiles**: Users can view and edit their profiles, and view their own listings.
 
 ## Installation
 
