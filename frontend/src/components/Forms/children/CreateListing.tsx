@@ -14,7 +14,7 @@ const CreateListing = () => {
       required: true,
       type: "number",
       min: 0,
-      step: "0.01",
+      step: 0.01,
     },
     {
       name: "category",

@@ -5,7 +5,6 @@ import {
   FormControlLabel,
   FormGroup,
   Slider,
-  Button,
   Box,
   Typography,
   InputAdornment,
