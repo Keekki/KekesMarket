@@ -19,7 +19,7 @@
 }
 
 .hero-section {
-  background-image: url("background2.jpg");
+  background-image: url("https://kekesmarketbackend.onrender.com/images/background2.jpg");
   position: relative;
   height: 50vh;
   background-size: cover;
