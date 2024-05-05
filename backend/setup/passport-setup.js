@@ -11,7 +11,8 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:8000/login/oauth2/callback",
+      callbackURL:
+        "https://kekesmarketbackend.onrender.com/login/oauth2/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       // Check if user already exists in the db
