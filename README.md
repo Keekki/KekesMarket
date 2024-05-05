@@ -73,7 +73,7 @@ To get a local copy up and running follow these simple steps.
 
 ## Usage
 
-After installation, the application will be running on your local server. You can access the backend by navigating to `http://localhost:3000` in your web browser.
+After installation, the application will be running on your local server. You can access the backend by navigating to `http://localhost:8000` in your web browser.
 
 And the frontend `http://localhost:9000`
 **NOTE you are missing env variables**
