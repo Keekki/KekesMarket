@@ -14,8 +14,8 @@ interface LoginFormValues {
 const LoginForm: React.FC<LoginFormProps> = () => {
   const navigate = useNavigate();
   const { setUser, logoutUser } = useContext(UserContext);
-  const [error, setError] = useState<string>("");
-  console.log(":D", error);
+  const [_error, setError] = useState<string>("");
+
   const logoutTimer = 30 * 60 * 1000; // 30 minutes
 
   useEffect(() => {

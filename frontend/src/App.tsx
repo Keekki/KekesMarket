@@ -11,6 +11,7 @@ import AuthHandler from "./components/User/AuthHandler";
 import CreateListing from "./components/Forms/children/CreateListing";
 import MyListings from "./components/MyListings";
 import MyAccount from "./components/User/MyAccount";
+import SearchPage from "./pages/SearchPage";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -35,6 +36,7 @@ const App: React.FC = () => {
             <Route path="/create-listing" element={<CreateListing />} />
             <Route path="/my-listings" element={<MyListings />} />
             <Route path="/my-account" element={<MyAccount />} />
+            <Route path="/search" element={<SearchPage />} />
           </Routes>
           <Toaster position="top-right" reverseOrder={false} />
         </Router>
