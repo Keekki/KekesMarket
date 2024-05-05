@@ -20,14 +20,14 @@ const LoginForm: React.FC<LoginFormProps> = () => {
 
   useEffect(() => {
     const events = ["click", "mousemove", "keypress", "scroll", "touchstart"];
-    let timeoutId: string | number | NodeJS.Timeout | undefined;
+    let timeoutId: number | undefined;
 
     const resetTimer = () => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
         logoutUser(); // Use logoutUser from context
         navigate("/login");
-      }, logoutTimer);
+      }, logoutTimer) as unknown as number;
     };
 
     events.forEach((event) => {
