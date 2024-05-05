@@ -7,8 +7,13 @@ require("dotenv").config();
 const path = require("path");
 const app = express();
 
+const corsOptions = {
+  origin: "https://kekesmarket.onrender.com",
+  optionsSuccessStatus: 200,
+};
+
 // Middleware for CORS
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Built-in middleware for json and urlencoded form parsing
 app.use(express.json());
