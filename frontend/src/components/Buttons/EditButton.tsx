@@ -105,7 +105,19 @@ const EditButton = ({ id }: EditButtonProps) => {
         if (data.error) {
           toast.error("Failed to update listing: " + data.message);
         } else {
-          toast.success("Listing updated successfully");
+          toast.success("Listing updated successfully", {
+            style: {
+              border: "1px solid black",
+              padding: "16px",
+              color: "black",
+              background: "white",
+              fontFamily: "Courier New",
+            },
+            iconTheme: {
+              primary: "black",
+              secondary: "white",
+            },
+          });
           handleClose();
           setTimeout(() => {
             window.location.reload();

@@ -71,7 +71,19 @@ const MyAccount = () => {
       const updatedData = { ...userData, ...body };
       setUserData(updatedData);
       setEditMode({ ...editMode, [field]: false });
-      toast.success("User data updated successfully.");
+      toast.success("User data updated successfully.", {
+        style: {
+          border: "1px solid black",
+          padding: "16px",
+          color: "black",
+          background: "white",
+          fontFamily: "Courier New",
+        },
+        iconTheme: {
+          primary: "black",
+          secondary: "white",
+        },
+      });
     } else {
       toast.error("Failed to update user data.");
     }
