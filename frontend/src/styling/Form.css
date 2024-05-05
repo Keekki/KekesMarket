@@ -1,0 +1,39 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: white;
+  color: black;
+  margin-top: -50px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form h2 {
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form .MuiTextField-root {
+  width: 300px;
+  color: black;
+}
+
+.MuiInputBase-input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: black !important;
+}
+
+.MuiInputBase-input:-moz-autofill {
+  box-shadow: 0 0 0 30px white inset !important;
+  text-fill-color: black !important;
+}

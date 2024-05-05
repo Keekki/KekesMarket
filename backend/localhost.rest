@@ -1,0 +1,47 @@
+# Create a new listing
+POST http://localhost:8000/api/listings
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "title": "Nuggets",
+  "description": "nugget",
+  "price": 5,
+  "category": "food"
+}
+
+###
+# Get all listings
+GET http://localhost:8000/api/listings
+content-type: application/json
+
+
+###
+# Sign up a new user
+POST http://localhost:8000/users/signup
+Content-Type: application/json
+
+{
+  "name": "Esko Mörkö",
+  "email": "esko12@example.com",
+  "password": "password1234"
+}
+
+###
+# @name login
+# Log in with the newly created user
+POST http://localhost:8000/users/login
+Content-Type: application/json
+
+{
+  "email": "esko12@example.com",
+  "password": "password1234"
+}
+
+###
+# Access a protected route with the Bearer token
+GET http://localhost:8000/protected-route
+Authorization: Bearer {{TOKEN}}
+
+
+@TOKEN = {{login.response.body.token}}
