@@ -14,6 +14,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import { toast } from "react-hot-toast";
 import Item from "../components/Item";
 
+import "../styling/MyListings.css";
+
 interface Listing {
   id: number;
   title: string;
@@ -196,22 +198,11 @@ const SearchPage = () => {
           }}
         />
       </Box>
-      <Box display="flex" justifyContent="center" my={2}>
-        <Button
-          variant="contained"
-          onClick={applyFilters}
-          style={{
-            color: "black",
-            backgroundColor: "white",
-            border: "1px solid black",
-          }}
-        >
-          Search
-        </Button>
-      </Box>
-      <div className="listings-container">
+      <div className="my-listings-container">
         {filteredListings.map((listing) => (
-          <Item key={listing.id} itemId={listing.id} />
+          <div key={listing.id} className="listing-item-container">
+            <Item key={listing.id} itemId={listing.id} />
+          </div>
         ))}
       </div>
     </div>
