@@ -5,6 +5,7 @@ This is a full-stack web application designed for buying and selling items in a 
 # Deployment
 
 The app is running at: https://kekesmarket.onrender.com/
+**NOTE** the backend is also running on render and the free tier closes the service if inactive. When visiting the site, please wait a minute for the backend to boot up!
 
 ## Technologies Used
 
