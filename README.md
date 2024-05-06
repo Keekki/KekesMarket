@@ -7,6 +7,11 @@ This is a full-stack web application designed for buying and selling items in a 
 The app is running at: https://kekesmarket.onrender.com/
 **NOTE** the backend is also running on render and the free tier closes the service if inactive. When visiting the site, please wait a minute for the backend to boot up!
 
+The app is deployed in 2 places:
+- **Render**: backend as a web service and the frontend as a static site, both as free tier services so there are downsides
+- **TUNI Virtual Machine**: the project is also deployed in a school virtual machine via my deploy pipeline
+
+
 ## Technologies Used
 
 ### Backend
@@ -101,6 +106,9 @@ Project Link: [https://github.com/Keekki/KekesMarket](https://github.com/Keekki/
 ## Acknowledgements
 
 - [React Documentation](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org)
 - [Node.js](https://nodejs.org/)
 - [Docker](https://www.docker.com/)
 - [MUI](https://mui.com/)
+- [react hot toast](https://react-hot-toast.com/)
+- [Render](https://dashboard.render.com/)
