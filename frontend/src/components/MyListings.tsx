@@ -28,14 +28,10 @@ const MyListings = () => {
   }, [user]);
 
   const fetchListings = () => {
-    const storedUserString = localStorage.getItem("user");
-    const storedUser = storedUserString ? JSON.parse(storedUserString) : null;
-    const token = user?.token || storedUser?.token;
-
     if (user && user.token) {
       fetch(`${import.meta.env.VITE_API_URL}/api/user/listings`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${user.token}`,
         },
       })
         .then((response) => response.json())
@@ -54,14 +50,10 @@ const MyListings = () => {
   };
 
   const handleDelete = (id: string) => {
-    const storedUserString = localStorage.getItem("user");
-    const storedUser = storedUserString ? JSON.parse(storedUserString) : null;
-    const token = user?.token || storedUser?.token;
-
     fetch(`${import.meta.env.VITE_API_URL}/api/listings/${id}`, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${user?.token}`,
       },
     })
       .then((response) => response.json())
