@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 interface SignUpValues {
   name: string;
   email: string;
-  phone: string;
+  phoneNumber: string;
   postalCode: string;
   city: string;
   password: string;
@@ -17,7 +17,7 @@ const SignUpForm: React.FC = () => {
   const fields = [
     { name: "name", label: "Name", required: true },
     { name: "email", label: "Email", required: true, type: "email" },
-    { name: "phone", label: "Phone", required: false, type: "phone" },
+    { name: "phoneNumber", label: "Phone", required: false, type: "phone" },
     { name: "postalCode", label: "Postal Code", required: false },
     { name: "city", label: "City", required: true },
     { name: "password", label: "Password", required: true, type: "password" },

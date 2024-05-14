@@ -15,13 +15,16 @@ import {
 } from "@mui/material";
 import { toast } from "react-hot-toast";
 
+// Defines the props expected by the EditButton component
 interface EditButtonProps {
-  id: string;
+  id: string; // ID of the item to be edited
 }
 
+// The EditButton component allows editing of an item's details
 const EditButton = ({ id }: EditButtonProps) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); // Controls the visibility of the dialog
   const [formData, setFormData] = useState({
+    // State to hold form data
     title: "",
     description: "",
     price: "",
@@ -30,6 +33,7 @@ const EditButton = ({ id }: EditButtonProps) => {
     category: "",
   });
 
+  // List of categories for the select dropdown
   const categories = [
     "Freetime",
     "Kitchen",
@@ -42,6 +46,7 @@ const EditButton = ({ id }: EditButtonProps) => {
     "Hiking",
   ];
 
+  // Fetches item details from the server and populates the form data
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/listings/${id}`)
       .then((response) => response.json())
@@ -61,14 +66,17 @@ const EditButton = ({ id }: EditButtonProps) => {
       });
   }, [id]);
 
+  // Opens the dialog
   const handleOpen = () => {
     setOpen(true);
   };
 
+  // Closes the dialog
   const handleClose = () => {
     setOpen(false);
   };
 
+  // Handles changes to text fields and updates the formData state
   const handleChange = (
     event: React.ChangeEvent<
       HTMLInputElement | { name?: string; value: unknown }
@@ -82,6 +90,7 @@ const EditButton = ({ id }: EditButtonProps) => {
     }));
   };
 
+  // Handles changes to the select dropdown
   const handleSelectChange = (event: SelectChangeEvent<string>) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -91,12 +100,17 @@ const EditButton = ({ id }: EditButtonProps) => {
     }));
   };
 
+  // Sends updated data to the server and handles the response
   const handleSave = () => {
+    const storedUserString = localStorage.getItem("user");
+    const storedUser = storedUserString ? JSON.parse(storedUserString) : null;
+    const token = storedUser?.token;
+
     fetch(`${import.meta.env.VITE_API_URL}/api/listings/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(formData),
     })
@@ -105,19 +119,7 @@ const EditButton = ({ id }: EditButtonProps) => {
         if (data.error) {
           toast.error("Failed to update listing: " + data.message);
         } else {
-          toast.success("Listing updated successfully", {
-            style: {
-              border: "1px solid black",
-              padding: "16px",
-              color: "black",
-              background: "white",
-              fontFamily: "Courier New",
-            },
-            iconTheme: {
-              primary: "black",
-              secondary: "white",
-            },
-          });
+          toast.success("Listing updated successfully");
           handleClose();
           setTimeout(() => {
             window.location.reload();
@@ -130,6 +132,7 @@ const EditButton = ({ id }: EditButtonProps) => {
       });
   };
 
+  // Renders the edit button and dialog
   return (
     <>
       <Button

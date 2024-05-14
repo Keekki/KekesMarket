@@ -39,13 +39,24 @@ const CreateListing = () => {
 
   const submitHandler = async (values: any) => {
     try {
+      const userString = localStorage.getItem("user");
+      if (!userString) {
+        throw new Error("No user found in localStorage");
+      }
+      const user = JSON.parse(userString);
+      const token = user?.token;
+
+      if (!token) {
+        throw new Error("No token found");
+      }
+
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/listings`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(values),
         }
